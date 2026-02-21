@@ -1,0 +1,331 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="#0a0a0a"/>
+
+  <!-- Subtle green glow in bottom-left (brand feel) -->
+  <radialGradient id="glow" cx="15%" cy="85%" r="50%">
+    <stop offset="0%" stop-color="#4caf6e" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#4caf6e" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1024" height="1024" fill="url(#glow)"/>
+
+  <!-- Matrix rain background (static representation) -->
+  <g opacity="0.15" font-family="'Courier New', monospace" font-size="11" fill="#4caf6e">
+    <text x="8" y="20">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="36">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="52">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="68">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="84">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="100">~ ~ ~ ~ ~ n " n 3 _</text>
+    <text x="8" y="116">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="132">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="148">~ ~ n " n 3 _ o 2 3 " n</text>
+    <text x="8" y="164">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="180">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="196">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="212">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="228">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="244">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="260">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="276">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="292">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="308">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="324">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="340">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="356">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="372">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="388">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="404">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="420">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="436">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="452">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="468">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="484">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="500">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="516">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="532">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="548">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="564">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="580">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="596">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="612">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="628">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="644">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="660">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="676">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="692">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="708">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="724">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="740">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="756">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="772">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="788">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="804">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="820">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="836">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="852">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="868">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="884">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="900">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="916">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="932">o 2 o 3 _ _ ~ 3 ·</text>
+    <text x="8" y="948">~ ~ ~ n " n 3 _</text>
+    <text x="8" y="964">o 3 " n a a ∧ a · o 2 ·</text>
+    <text x="8" y="980">2 2 2 3 o 2 _ o ‹ ; ·</text>
+    <text x="8" y="996">_ 2 o 3 3 3 o o _ o ; ·</text>
+    <text x="8" y="1012">o 2 o 3 _ _ ~ 3 ·</text>
+
+    <!-- Right side matrix -->
+    <text x="700" y="20">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="36">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="52">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="68">· · · , , · · · · · · · ·</text>
+    <text x="700" y="84">· · · , , · · · · · · · ·</text>
+    <text x="700" y="100">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="116">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="132">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="148">· · · , , · · · · · · · ·</text>
+    <text x="700" y="164">· · · , , · · · · · · · ·</text>
+    <text x="700" y="180">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="196">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="212">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="228">· · · , , · · · · · · · ·</text>
+    <text x="700" y="244">· · · , , · · · · · · · ·</text>
+    <text x="700" y="260">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="276">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="292">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="308">· · · , , · · · · · · · ·</text>
+    <text x="700" y="324">· · · , , · · · · · · · ·</text>
+    <text x="700" y="340">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="356">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="372">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="388">· · · , , · · · · · · · ·</text>
+    <text x="700" y="404">· · · , , · · · · · · · ·</text>
+    <text x="700" y="420">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="436">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="452">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="468">· · · , , · · · · · · · ·</text>
+    <text x="700" y="484">· · · , , · · · · · · · ·</text>
+    <text x="700" y="500">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="516">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="532">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="548">· · · , , · · · · · · · ·</text>
+    <text x="700" y="564">· · · , , · · · · · · · ·</text>
+    <text x="700" y="580">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="596">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="612">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="628">· · · , , · · · · · · · ·</text>
+    <text x="700" y="644">· · · , , · · · · · · · ·</text>
+    <text x="700" y="660">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="676">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="692">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="708">· · · , , · · · · · · · ·</text>
+    <text x="700" y="724">· · · , , · · · · · · · ·</text>
+    <text x="700" y="740">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="756">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="772">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="788">· · · , , · · · · · · · ·</text>
+    <text x="700" y="804">· · · , , · · · · · · · ·</text>
+    <text x="700" y="820">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="836">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="852">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="868">· · · , , · · · · · · · ·</text>
+    <text x="700" y="884">· · · , , · · · · · · · ·</text>
+    <text x="700" y="900">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="916">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="932">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="948">· · · , , · · · · · · · ·</text>
+    <text x="700" y="964">· · · , , · · · · · · · ·</text>
+    <text x="700" y="980">; ‹ › › ; · , , , , · · ·</text>
+    <text x="700" y="996">; ‹ ( ‹ › › ; ; · , , , ·</text>
+    <text x="700" y="1012">; ‹ › › ; · , , , , · · ·</text>
+  </g>
+
+  <!-- Terminal window -->
+  <rect x="72" y="160" width="880" height="700" rx="10" ry="10" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+
+  <!-- Title bar -->
+  <rect x="72" y="160" width="880" height="36" rx="10" ry="10" fill="#252525"/>
+  <rect x="72" y="178" width="880" height="18" fill="#252525"/>
+
+  <!-- Traffic lights -->
+  <circle cx="100" cy="178" r="7" fill="#ff5f57"/>
+  <circle cx="122" cy="178" r="7" fill="#febc2e"/>
+  <circle cx="144" cy="178" r="7" fill="#28c840"/>
+
+  <!-- Title bar text -->
+  <text x="180" y="183" font-family="'Courier New', monospace" font-size="13" fill="#888">npx skills add pissdart/gank</text>
+
+  <!-- Terminal content area -->
+  <rect x="72" y="196" width="880" height="664" fill="#141414"/>
+
+  <!-- Prompt line -->
+  <text x="96" y="232" font-family="'Courier New', monospace" font-size="14" fill="#888">$</text>
+  <text x="110" y="232" font-family="'Courier New', monospace" font-size="14" fill="#e0e0e0">npx <tspan fill="#4caf6e">skills</tspan> add pissdart/gank</text>
+
+  <!-- GANK SKILLS pixel/bitmap logo — monospace block art matching Uniswap SKILLS aesthetic -->
+  <!-- Each letter built from filled rectangles on a pixel grid, cell=9px, baseline y=240 -->
+  <!-- G -->
+  <g fill="#c8c8c8">
+    <!-- G top bar -->
+    <rect x="96" y="240" width="45" height="9"/>
+    <!-- G left side top -->
+    <rect x="96" y="249" width="9" height="18"/>
+    <!-- G left side bottom -->
+    <rect x="96" y="285" width="9" height="18"/>
+    <!-- G bottom bar -->
+    <rect x="96" y="303" width="45" height="9"/>
+    <!-- G right bottom -->
+    <rect x="132" y="276" width="9" height="36"/>
+    <!-- G mid bar -->
+    <rect x="114" y="276" width="27" height="9"/>
+  </g>
+  <!-- A -->
+  <g fill="#c8c8c8">
+    <!-- A left side -->
+    <rect x="159" y="249" width="9" height="63"/>
+    <!-- A right side -->
+    <rect x="195" y="249" width="9" height="63"/>
+    <!-- A top -->
+    <rect x="159" y="240" width="45" height="9"/>
+    <!-- A mid bar -->
+    <rect x="159" y="276" width="45" height="9"/>
+  </g>
+  <!-- N -->
+  <g fill="#c8c8c8">
+    <!-- N left side -->
+    <rect x="222" y="240" width="9" height="72"/>
+    <!-- N right side -->
+    <rect x="258" y="240" width="9" height="72"/>
+    <!-- N diagonal (3 steps) -->
+    <rect x="222" y="240" width="18" height="9"/>
+    <rect x="231" y="258" width="9" height="9"/>
+    <rect x="240" y="267" width="9" height="9"/>
+    <rect x="249" y="276" width="18" height="9"/>
+  </g>
+  <!-- K -->
+  <g fill="#c8c8c8">
+    <!-- K left side -->
+    <rect x="285" y="240" width="9" height="72"/>
+    <!-- K upper diagonal -->
+    <rect x="294" y="267" width="9" height="9"/>
+    <rect x="303" y="258" width="9" height="9"/>
+    <rect x="312" y="249" width="9" height="9"/>
+    <rect x="321" y="240" width="9" height="9"/>
+    <!-- K mid -->
+    <rect x="294" y="276" width="9" height="9"/>
+    <!-- K lower diagonal -->
+    <rect x="303" y="285" width="9" height="9"/>
+    <rect x="312" y="294" width="9" height="9"/>
+    <rect x="321" y="303" width="9" height="9"/>
+  </g>
+
+  <!-- SKILLS text — same pixel grid, y starts at 240, shifted right -->
+  <!-- S -->
+  <g fill="#4caf6e">
+    <rect x="375" y="240" width="45" height="9"/>
+    <rect x="375" y="249" width="9" height="18"/>
+    <rect x="375" y="276" width="45" height="9"/>
+    <rect x="411" y="285" width="9" height="18"/>
+    <rect x="375" y="303" width="45" height="9"/>
+  </g>
+  <!-- K -->
+  <g fill="#4caf6e">
+    <rect x="438" y="240" width="9" height="72"/>
+    <rect x="447" y="267" width="9" height="9"/>
+    <rect x="456" y="258" width="9" height="9"/>
+    <rect x="465" y="249" width="9" height="9"/>
+    <rect x="474" y="240" width="9" height="9"/>
+    <rect x="447" y="276" width="9" height="9"/>
+    <rect x="456" y="285" width="9" height="9"/>
+    <rect x="465" y="294" width="9" height="9"/>
+    <rect x="474" y="303" width="9" height="9"/>
+  </g>
+  <!-- I -->
+  <g fill="#4caf6e">
+    <rect x="501" y="240" width="27" height="9"/>
+    <rect x="510" y="249" width="9" height="54"/>
+    <rect x="501" y="303" width="27" height="9"/>
+  </g>
+  <!-- L -->
+  <g fill="#4caf6e">
+    <rect x="546" y="240" width="9" height="72"/>
+    <rect x="546" y="303" width="36" height="9"/>
+  </g>
+  <!-- L -->
+  <g fill="#4caf6e">
+    <rect x="600" y="240" width="9" height="72"/>
+    <rect x="600" y="303" width="36" height="9"/>
+  </g>
+  <!-- S -->
+  <g fill="#4caf6e">
+    <rect x="654" y="240" width="45" height="9"/>
+    <rect x="654" y="249" width="9" height="18"/>
+    <rect x="654" y="276" width="45" height="9"/>
+    <rect x="690" y="285" width="9" height="18"/>
+    <rect x="654" y="303" width="45" height="9"/>
+  </g>
+
+  <!-- skills badge -->
+  <rect x="96" y="322" width="68" height="20" rx="3" fill="#4caf6e"/>
+  <text x="103" y="336" font-family="'Courier New', monospace" font-size="12" font-weight="bold" fill="#fff">skills</text>
+
+  <!-- Output lines -->
+  <!-- Dot indicators -->
+  <circle cx="106" cy="362" r="4" fill="none" stroke="#4caf6e" stroke-width="1.5"/>
+  <text x="120" y="367" font-family="'Courier New', monospace" font-size="14" fill="#ccc">Source: <tspan fill="#888">https://github.com/pissdart/gank-skill</tspan></text>
+
+  <circle cx="106" cy="388" r="4" fill="none" stroke="#4caf6e" stroke-width="1.5"/>
+  <text x="120" y="393" font-family="'Courier New', monospace" font-size="14" fill="#ccc">Repository cloned</text>
+
+  <circle cx="106" cy="414" r="4" fill="none" stroke="#4caf6e" stroke-width="1.5"/>
+  <text x="120" y="419" font-family="'Courier New', monospace" font-size="14" fill="#ccc">Found <tspan fill="#4caf6e" font-weight="bold">7 skills</tspan></text>
+
+  <!-- Select prompt -->
+  <text x="96" y="454" font-family="'Courier New', monospace" font-size="14" fill="#4caf6e" font-weight="bold">◆</text>
+  <text x="116" y="454" font-family="'Courier New', monospace" font-size="14" fill="#e0e0e0" font-weight="bold">Select skills to install <tspan fill="#888" font-weight="normal">(space to toggle)</tspan></text>
+
+  <!-- Skill list items -->
+  <!-- Selected item -->
+  <rect x="96" y="462" width="760" height="24" fill="#4caf6e" opacity="0.08" rx="2"/>
+  <text x="108" y="479" font-family="'Courier New', monospace" font-size="13" fill="#888">▶</text>
+  <text x="126" y="479" font-family="'Courier New', monospace" font-size="13" fill="#4caf6e" font-weight="bold">launch-token</text>
+  <text x="256" y="479" font-family="'Courier New', monospace" font-size="13" fill="#666">(launch tokens on pump.fun — dev buy, bundles, snipers)</text>
+
+  <text x="108" y="503" font-family="'Courier New', monospace" font-size="13" fill="#555">□</text>
+  <text x="126" y="503" font-family="'Courier New', monospace" font-size="13" fill="#aaa">swarm-buy</text>
+  <text x="236" y="503" font-family="'Courier New', monospace" font-size="13" fill="#555">(hit a token from multiple wallets at the same time)</text>
+
+  <text x="108" y="527" font-family="'Courier New', monospace" font-size="13" fill="#555">□</text>
+  <text x="126" y="527" font-family="'Courier New', monospace" font-size="13" fill="#aaa">volume-bot</text>
+  <text x="236" y="527" font-family="'Courier New', monospace" font-size="13" fill="#555">(volume sessions — low / medium / high intensity)</text>
+
+  <text x="108" y="551" font-family="'Courier New', monospace" font-size="13" fill="#555">□</text>
+  <text x="126" y="551" font-family="'Courier New', monospace" font-size="13" fill="#aaa">copy-trade</text>
+  <text x="236" y="551" font-family="'Courier New', monospace" font-size="13" fill="#555">(mirror another wallet's trades)</text>
+
+  <text x="108" y="575" font-family="'Courier New', monospace" font-size="13" fill="#555">□</text>
+  <text x="126" y="575" font-family="'Courier New', monospace" font-size="13" fill="#aaa">wallet-ops</text>
+  <text x="236" y="575" font-family="'Courier New', monospace" font-size="13" fill="#555">(transfer, split, vamp-all, clean-funds)</text>
+
+  <text x="108" y="599" font-family="'Courier New', monospace" font-size="13" fill="#555">□</text>
+  <text x="126" y="599" font-family="'Courier New', monospace" font-size="13" fill="#aaa">positions</text>
+  <text x="220" y="599" font-family="'Courier New', monospace" font-size="13" fill="#555">(holdings + pnl across all wallets)</text>
+
+  <text x="108" y="623" font-family="'Courier New', monospace" font-size="13" fill="#555">□</text>
+  <text x="126" y="623" font-family="'Courier New', monospace" font-size="13" fill="#aaa">market-data</text>
+  <text x="246" y="623" font-family="'Courier New', monospace" font-size="13" fill="#555">(token info, charts, holders, trades)</text>
+
+  <!-- Bottom separator -->
+  <line x1="96" y1="648" x2="856" y2="648" stroke="#2a2a2a" stroke-width="1"/>
+
+  <!-- Bottom info -->
+  <text x="96" y="672" font-family="'Courier New', monospace" font-size="12" fill="#555">base url: <tspan fill="#888">https://gank.dev/api/v2</tspan>  ·  auth: <tspan fill="#888">GANK_API_KEY</tspan>  ·  solana</text>
+
+  <!-- Cursor blink -->
+  <rect x="96" y="686" width="8" height="16" fill="#4caf6e" opacity="0.9"/>
+
+  <!-- Bottom tagline -->
+  <text x="96" y="820" font-family="'Courier New', monospace" font-size="13" fill="#4caf6e" opacity="0.6">// the trading terminal for degens. now with an api.</text>
+</svg>
