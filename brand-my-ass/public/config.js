@@ -1,0 +1,130 @@
+// Single source of truth for the auction. Edit this file, redeploy, done.
+// Functions import it too (functions/_lib/config.js re-exports it), so the
+// server and the page always agree on prices, dates and slot ids.
+
+export const SITE = {
+  name: 'BRAND MY ASS',
+  title: 'Your brand on my ass.',
+  description:
+    'Ten tattoo placements across my back and ass, sold by live auction. Every slot opens at $1,500 USD. Winners get inked, permanently. The money finishes my game.',
+  url: 'https://brand-my-ass.pages.dev',
+};
+
+// Who you are. Shown in the footer and the "hear from me" step.
+export const OWNER = {
+  handle: '@pissdart',
+  link: 'https://t.me/pissdart',
+  game: 'my game', // e.g. 'GANK: the game'
+};
+
+// Money.
+export const CURRENCY = 'USD';
+export const START_BID = 1500; // every slot opens here
+export const STEP = 250; // each new bid raises the price by this
+export const TARGET = 30000; // dev budget shown in the funding bar
+
+// When the auction ends. ISO 8601 with offset.
+export const END_AT = '2026-10-05T20:00:00-04:00';
+
+// Placements. `anchor` is where the slot sits on the 3D body, in body space
+// (x: left/right, y: up, z: towards the viewer). `dir` is the side of the body
+// the slot faces — the viewer raycasts from anchor + dir onto the skin.
+// `decal` is the stencil size on the skin (width, height) in body units.
+export const SLOTS = [
+  {
+    id: 1,
+    name: 'Left cheek',
+    note: 'The headline placement.',
+    size: '≈ 15 × 15 cm',
+    anchor: [-0.19, -0.36, 0.3],
+    dir: [0, 0, 1],
+    decal: [0.24, 0.24],
+  },
+  {
+    id: 2,
+    name: 'Right cheek',
+    note: 'The matched pair.',
+    size: '≈ 15 × 15 cm',
+    anchor: [0.19, -0.36, 0.3],
+    dir: [0, 0, 1],
+    decal: [0.24, 0.24],
+  },
+  {
+    id: 3,
+    name: 'Lower back',
+    note: 'The tramp stamp. Centre of attention.',
+    size: '≈ 20 × 8 cm',
+    anchor: [0, -0.1, 0.3],
+    dir: [0, 0, 1],
+    decal: [0.34, 0.14],
+  },
+  {
+    id: 4,
+    name: 'Upper back',
+    note: 'The billboard. Shoulder to shoulder.',
+    size: '≈ 30 × 12 cm',
+    anchor: [0, 0.5, 0.3],
+    dir: [0, 0, 1],
+    decal: [0.5, 0.2],
+  },
+  {
+    id: 5,
+    name: 'Left shoulder blade',
+    note: 'Reads well over a tank top.',
+    size: '≈ 12 × 12 cm',
+    anchor: [-0.22, 0.3, 0.3],
+    dir: [0, 0, 1],
+    decal: [0.2, 0.2],
+  },
+  {
+    id: 6,
+    name: 'Right shoulder blade',
+    note: 'Same, mirrored.',
+    size: '≈ 12 × 12 cm',
+    anchor: [0.22, 0.3, 0.3],
+    dir: [0, 0, 1],
+    decal: [0.2, 0.2],
+  },
+  {
+    id: 7,
+    name: 'Spine',
+    note: 'One vertical line of text, full length.',
+    size: '≈ 4 × 40 cm',
+    anchor: [0, 0.18, 0.3],
+    dir: [0, 0, 1],
+    decal: [0.08, 0.62],
+    customField: 'SPINE TEXT · 2–24 CHARACTERS',
+    customPlaceholder: 'SHIP IT',
+    customMax: 24,
+  },
+  {
+    id: 8,
+    name: 'Left flank',
+    note: 'Ribs to hip. The side profile.',
+    size: '≈ 8 × 20 cm',
+    anchor: [-0.5, 0.05, 0.02],
+    dir: [-1, 0, 0.15],
+    decal: [0.14, 0.34],
+  },
+  {
+    id: 9,
+    name: 'Right flank',
+    note: 'The other side.',
+    size: '≈ 8 × 20 cm',
+    anchor: [0.5, 0.05, 0.02],
+    dir: [1, 0, 0.15],
+    decal: [0.14, 0.34],
+  },
+  {
+    id: 10,
+    name: 'Nape',
+    note: 'Above the collar. Visible with a shirt on.',
+    size: '≈ 8 × 6 cm',
+    anchor: [0, 0.86, 0.3],
+    dir: [0, 0.2, 1],
+    decal: [0.13, 0.1],
+  },
+];
+
+export const SLOT_IDS = SLOTS.map((s) => s.id);
+export const slotById = (id) => SLOTS.find((s) => s.id === Number(id));
