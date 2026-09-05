@@ -53,10 +53,11 @@ b { font-weight: 700; }
 @keyframes breathe { 50% { opacity: .35; } }
 .body-viewer:not(.is-loading) .body-loading { display: none; }
 .body-markers { position: absolute; inset: 0; pointer-events: none; }
-.body-marker { position: absolute; left: 0; top: 0; margin: -15px 0 0 -15px; display: inline-flex; align-items: center; gap: 0; height: 30px; padding: 0; border: 1px solid var(--ink); border-radius: 999px; background: #fff; color: var(--ink); font: 700 10px var(--sans); cursor: pointer; pointer-events: auto; transition: opacity .25s, transform .08s; }
-.body-marker b { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 700; }
+.body-marker { position: absolute; left: 0; top: 0; margin: -13px 0 0 -13px; display: inline-flex; align-items: center; gap: 0; height: 26px; padding: 0; border: 1px solid var(--ink); border-radius: 999px; background: #fff; color: var(--ink); font: 700 10px var(--sans); cursor: pointer; pointer-events: auto; transition: opacity .25s, transform .08s; }
+.body-marker b { display: grid; place-items: center; width: 24px; height: 24px; font-size: 9px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 700; }
 .body-marker span { display: none; padding: 0 10px 0 6px; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.body-marker.is-held span { display: inline; }
+.body-marker.is-held:hover span, .body-marker.is-held.is-active span { display: inline; }
+.body-marker:hover, .body-marker.is-active { z-index: 2; }
 .body-marker.is-hidden { opacity: 0; pointer-events: none; }
 .body-marker:hover, .body-marker.is-active { background: var(--ink); color: #fff; }
 .body-marker:hover b, .body-marker.is-active b { background: #fff; color: var(--ink); }

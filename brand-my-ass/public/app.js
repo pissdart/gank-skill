@@ -7,6 +7,8 @@ const money = (n) => `$${Number(n || 0).toLocaleString('en-US')}`;
 const esc = (s) => String(s ?? '').replace(/[&<>'"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[c]));
 const safeOrigin = (url) => { try { const u = new URL(url); return u.protocol === 'https:' || u.protocol === 'http:' ? u.origin : ''; } catch { return ''; } };
 const logoUrl = (domain) => `/api/logo?domain=${encodeURIComponent(domain)}`;
+const WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','twenty-one','twenty-two','twenty-three','twenty-four'];
+const countWord = (n) => WORDS[n] || String(n);
 const ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 const spots = SLOTS.map((s) => ({ ...s, currentBid: 0, bids: 0, leader: '', website: '', domain: '', custom: '', reserved: false, history: [] }));
@@ -29,7 +31,9 @@ $$('[data-game]').forEach((el) => (el.textContent = OWNER.game));
 const ownerLink = $('[data-owner-link]');
 ownerLink.textContent = OWNER.handle;
 ownerLink.href = OWNER.link;
-$('[data-hero-copy]').textContent = `Ten tattoo placements across my back and my ass. Every slot opens at ${money(START_BID)} USD and each new bid raises it by ${money(STEP)}. Winners get inked, permanently. The money finishes ${OWNER.game}.`;
+$$('[data-slot-count]').forEach((el) => (el.textContent = countWord(SLOTS.length)));
+$$('[data-slot-count-cap]').forEach((el) => (el.textContent = countWord(SLOTS.length).replace(/^./, (c) => c.toUpperCase())));
+$('[data-hero-copy]').textContent = `${countWord(SLOTS.length).replace(/^./, (c) => c.toUpperCase())} tattoo placements across my back and my ass. Every slot opens at ${money(START_BID)} USD and each new bid raises it by ${money(STEP)}. Winners get inked, permanently. The money finishes ${OWNER.game}.`;
 
 /* ---------------------------------------------------------------- rows --- */
 const historyHTML = (s) => s.history.length

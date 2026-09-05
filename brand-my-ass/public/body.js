@@ -34,33 +34,36 @@ const capsule = (x, y, z, ax, ay, az, bx, by, bz, r) => {
 // Body space: x left/right, y up, z towards the viewer. The viewer looks at
 // the back, so the back is +z. Units: the marching-cubes cube is [-1, 1]^3.
 function bodySDF(x, y, z) {
-  // torso, stacked ellipsoids from shoulders to pelvis
-  let d = ellipsoid(x, y, z, 0, 0.62, -0.01, 0.5, 0.17, 0.2);
-  d = smin(d, ellipsoid(x, y, z, 0, 0.44, 0, 0.43, 0.3, 0.2), 0.1);
-  d = smin(d, ellipsoid(x, y, z, 0, 0.2, 0, 0.37, 0.3, 0.18), 0.1);
-  d = smin(d, ellipsoid(x, y, z, 0, -0.02, 0, 0.3, 0.22, 0.16), 0.1);
-  d = smin(d, ellipsoid(x, y, z, 0, -0.2, 0, 0.42, 0.2, 0.19), 0.09);
-  // scapulae, a little relief under the skin
-  d = smin(d, ellipsoid(x, y, z, -0.2, 0.36, 0.13, 0.14, 0.16, 0.08), 0.09);
-  d = smin(d, ellipsoid(x, y, z, 0.2, 0.36, 0.13, 0.14, 0.16, 0.08), 0.09);
-  // glutes
-  d = smin(d, ellipsoid(x, y, z, -0.195, -0.38, 0.11, 0.25, 0.235, 0.245), 0.065);
-  d = smin(d, ellipsoid(x, y, z, 0.195, -0.38, 0.11, 0.25, 0.235, 0.245), 0.065);
-  // thighs, cut at the bottom of the cube
-  d = smin(d, capsule(x, y, z, -0.19, -0.42, 0.02, -0.2, -1.3, -0.03, 0.17), 0.07);
-  d = smin(d, capsule(x, y, z, 0.19, -0.42, 0.02, 0.2, -1.3, -0.03, 0.17), 0.07);
-  // neck and deltoid stubs, cut like a torso fragment
-  d = smin(d, capsule(x, y, z, 0, 0.55, -0.03, 0, 1.3, -0.03, 0.105), 0.08);
-  d = smin(d, ellipsoid(x, y, z, -0.5, 0.58, -0.02, 0.115, 0.14, 0.125), 0.09);
-  d = smin(d, ellipsoid(x, y, z, 0.5, 0.58, -0.02, 0.115, 0.14, 0.125), 0.09);
-  // spine furrow, gluteal cleft, dimples of Venus
-  d = smax(d, -capsule(x, y, z, 0, 0.7, 0.215, 0, -0.12, 0.2, 0.028), 0.07);
-  d = smax(d, -capsule(x, y, z, 0, -0.2, 0.26, 0, -0.64, 0.24, 0.036), 0.05);
-  d = smax(d, -ellipsoid(x, y, z, -0.085, -0.13, 0.205, 0.035, 0.03, 0.03), 0.045);
-  d = smax(d, -ellipsoid(x, y, z, 0.085, -0.13, 0.205, 0.035, 0.03, 0.03), 0.045);
-  // clip: flat cuts at mid-thigh and above the shoulders
-  d = Math.max(d, -0.88 - y);
-  d = Math.max(d, y - 0.9);
+  const ax = Math.abs(x); // the body is symmetric; sculpt one side
+  // neck and trapezius slope
+  let d = capsule(x, y, z, 0, 0.66, -0.03, 0, 1.3, -0.04, 0.1);
+  d = smin(d, ellipsoid(x, y, z, 0, 0.66, -0.02, 0.34, 0.11, 0.15), 0.12);
+  // shoulders (rear delts) and the upper arms, hanging, cut at the elbow
+  d = smin(d, ellipsoid(ax, y, z, 0.42, 0.6, -0.03, 0.13, 0.12, 0.14), 0.08);
+  d = smin(d, capsule(ax, y, z, 0.46, 0.56, -0.05, 0.52, 0.0, -0.09, 0.09), 0.04);
+  // ribcage and lats: wide at the top, tapering into the waist
+  d = smin(d, ellipsoid(x, y, z, 0, 0.42, 0, 0.41, 0.32, 0.19), 0.1);
+  d = smin(d, ellipsoid(x, y, z, 0, 0.2, -0.01, 0.39, 0.28, 0.17), 0.1);
+  d = smin(d, ellipsoid(x, y, z, 0, -0.02, -0.01, 0.31, 0.2, 0.15), 0.1);
+  d = smin(d, ellipsoid(x, y, z, 0, -0.2, 0, 0.4, 0.2, 0.17), 0.09);
+  // erector spinae: two ridges either side of the spine channel
+  d = smin(d, capsule(ax, y, z, 0.065, 0.56, 0.155, 0.065, -0.14, 0.165, 0.07), 0.07);
+  // shoulder blades
+  d = smin(d, ellipsoid(ax, y, z, 0.2, 0.4, 0.14, 0.13, 0.15, 0.06), 0.08);
+  // glutes, full and round
+  d = smin(d, ellipsoid(ax, y, z, 0.185, -0.41, 0.1, 0.245, 0.24, 0.245), 0.06);
+  // thighs with a hamstring bulge, cut above the knee
+  d = smin(d, capsule(ax, y, z, 0.19, -0.5, 0.03, 0.2, -1.3, -0.02, 0.165), 0.07);
+  d = smin(d, ellipsoid(ax, y, z, 0.19, -0.74, 0.08, 0.15, 0.22, 0.13), 0.07);
+  // carve: spine furrow, gluteal cleft, the crease under each cheek, dimples
+  d = smax(d, -capsule(x, y, z, 0, 0.62, 0.215, 0, -0.14, 0.215, 0.026), 0.05);
+  d = smax(d, -capsule(x, y, z, 0, -0.24, 0.29, 0, -0.62, 0.27, 0.04), 0.045);
+  d = smax(d, -capsule(ax, y, z, 0.06, -0.635, 0.3, 0.36, -0.61, 0.22, 0.026), 0.04);
+  d = smax(d, -ellipsoid(ax, y, z, 0.085, -0.15, 0.215, 0.035, 0.03, 0.03), 0.04);
+  // clip: flat cuts above the knee, at the elbow, and above the shoulders
+  d = Math.max(d, -0.9 - y);
+  d = Math.max(d, y - 0.92);
+  d = Math.max(d, Math.min(0.08 - y, ax - 0.36)); // arms end at y = 0.08
   return d;
 }
 
@@ -235,7 +238,7 @@ export async function createBodyViewer({ container, slots, onSelect, onHover, re
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(26, 1, 0.1, 50);
-  const HOME = new THREE.Vector3(0.75, 0.45, 4.15);
+  const HOME = new THREE.Vector3(0.55, 0.5, 4.0);
   camera.position.copy(HOME);
 
   const controls = new OrbitControls(camera, canvas);
@@ -252,8 +255,8 @@ export async function createBodyViewer({ container, slots, onSelect, onHover, re
   controls.rotateSpeed = 0.6;
 
   // white studio
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xd9d3cc, 1.35));
-  const key = new THREE.DirectionalLight(0xfff4ea, 2.3);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xe6e0da, 1.0));
+  const key = new THREE.DirectionalLight(0xfff8f2, 2.5);
   key.position.set(2.2, 3.2, 3.6);
   key.castShadow = true;
   key.shadow.mapSize.set(2048, 2048);
@@ -271,13 +274,13 @@ export async function createBodyViewer({ container, slots, onSelect, onHover, re
   scene.add(rim);
 
   const skin = new THREE.MeshPhysicalMaterial({
-    color: 0xf0e8df,
-    roughness: 0.58,
+    color: 0xf1d8c8, // pale skin, not paper
+    roughness: 0.6,
     metalness: 0,
-    sheen: 0.5,
-    sheenRoughness: 0.75,
-    sheenColor: new THREE.Color(0xffe7d6),
-    specularIntensity: 0.35,
+    sheen: 0.4,
+    sheenRoughness: 0.8,
+    sheenColor: new THREE.Color(0xffc4b0),
+    specularIntensity: 0.3,
   });
 
   const body = new THREE.Mesh(await buildBodyGeometry(resolution), skin);
@@ -301,10 +304,16 @@ export async function createBodyViewer({ container, slots, onSelect, onHover, re
   container.append(markers);
 
   for (const slot of slots) {
-    const dir = new THREE.Vector3(...slot.dir).normalize();
-    const anchor = new THREE.Vector3(...slot.anchor);
-    raycaster.set(anchor.clone().add(dir.clone().multiplyScalar(1.5)), dir.clone().negate());
-    const hit = raycaster.intersectObject(body, false)[0];
+    // Nudge off exact grid planes: a ray that runs precisely along a mesh
+    // edge can slip between two triangles and miss.
+    const anchor = new THREE.Vector3(...slot.anchor).add(new THREE.Vector3(0.00137, 0.00211, 0));
+    let hit = null;
+    for (const d of [slot.dir, [0, 0, 1], [slot.dir[0], 0.05, 1]]) {
+      const dir = new THREE.Vector3(...d).normalize();
+      raycaster.set(anchor.clone().add(dir.clone().multiplyScalar(1.5)), dir.clone().negate());
+      hit = raycaster.intersectObject(body, false)[0];
+      if (hit) break;
+    }
     if (!hit) { console.warn('slot did not land on the body', slot.id); continue; }
     const point = hit.point.clone();
     const normal = hit.face.normal.clone().normalize();
