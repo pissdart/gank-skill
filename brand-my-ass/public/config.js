@@ -23,6 +23,20 @@ export const START_BID = 1500; // every slot opens here
 export const STEP = 250; // each new bid raises the price by this
 export const TARGET = 30000; // dev budget shown in the funding bar
 
+// Deposit to place a bid, charged through Stripe Checkout. Held only while
+// you lead: refunded automatically the moment you're outbid, kept if you win
+// and don't settle the balance. 0 disables deposits entirely.
+export const DEPOSIT = 250;
+
+// One brand leading several placements pays less for the lot at close.
+// Sorted by `min`; the highest matching tier applies to the combined total.
+export const BUNDLE_DISCOUNTS = [
+  { min: 2, pct: 10 },
+  { min: 3, pct: 15 },
+  { min: 4, pct: 20 },
+];
+export const discountFor = (count) => BUNDLE_DISCOUNTS.filter((t) => count >= t.min).pop()?.pct || 0;
+
 // When the auction ends. ISO 8601 with offset.
 export const END_AT = '2026-10-05T20:00:00-04:00';
 

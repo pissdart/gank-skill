@@ -5,3 +5,5 @@ HASH_SALT=change-me-too          # salts the per-IP hash used for rate limiting
 RESEND_API_KEY=                  # get an email on every bid (resend.com)
 NOTIFY_EMAIL=you@example.com
 NOTIFY_FROM=Brand My Ass <bids@yourdomain.com>
+STRIPE_SECRET_KEY=              # sk_test_… / sk_live_… — turns on the deposit flow
+STRIPE_WEBHOOK_SECRET=          # whsec_… from the endpoint you add at /api/stripe-webhook

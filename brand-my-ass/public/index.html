@@ -64,12 +64,12 @@
           <article>
             <span>01</span>
             <h3>Pick a placement</h3>
-            <p>Ten areas, each with a separate price, leader and public history. Cheeks, back, blades, nape, thighs. All on my back side.</p>
+            <p>Ten areas, each with a separate price, leader and public history. A <b data-deposit>$250</b> deposit puts your bid on the board; it comes straight back if you're outbid.</p>
           </article>
           <article>
             <span>02</span>
             <h3>Raise it by <b data-step>$250</b></h3>
-            <p>Every slot opens at <b data-start>$1,500</b>. Each new bid raises the current price by <b data-step>$250</b>. No hidden maximum, no reserve.</p>
+            <p>Every slot opens at <b data-start>$1,500</b> and moves in <b data-step>$250</b> steps. Lead two or more placements for one bigger piece and <b data-discount-first>10%</b> or more comes off your total at close.</p>
           </article>
           <article>
             <span>03</span>
@@ -100,7 +100,11 @@
           </details>
           <details>
             <summary>Do I pay now?</summary>
-            <p>No. No payment or card details are collected on this site. When the auction ends I contact each leading bidder to confirm and invoice. Payment clears before the needle does. If a leader walks, the next bidder in the history gets the call.</p>
+            <p>Only a <b data-deposit>$250</b> deposit, charged by card through Stripe when you place a bid. It's refunded automatically the moment someone outbids you. If you're leading when the clock stops, the deposit counts toward your total and I invoice the balance; payment clears before the needle does. If you win and don't settle within 14 days, I keep the deposit and the placement passes to the next bidder.</p>
+          </details>
+          <details>
+            <summary>Can I take a bigger piece?</summary>
+            <p>Yes. Adjacent placements can be treated as one canvas: both cheeks, or the upper back plus both blades. Lead more than one placement at close and a bundle discount comes off the combined total: <span data-discount-tiers>2 placements → 10% off</span>. It's applied on the invoice, not on the bids, so every auction stays a straight race.</p>
           </details>
           <details>
             <summary>How big are the placements?</summary>
@@ -140,11 +144,15 @@
             <label id="custom-option-label" for="bid-customization">Customization</label>
             <input class="text-input" id="bid-customization" type="text" maxlength="40" placeholder="Your choice" />
           </div>
+          <div class="deposit-note" id="deposit-note" hidden>
+            <b><span data-deposit>$250</span> deposit to bid</b>
+            <span>Charged on the next screen. Refunded automatically the moment you're outbid. If you win and don't settle the balance, I keep it.</span>
+          </div>
           <label class="honeypot" aria-hidden="true">Fax number<input id="fax-number" name="fax" tabindex="-1" autocomplete="off" /></label>
           <label class="consent"><input id="bid-consent" type="checkbox" /><span>I confirm this is a genuine sponsorship bid and agree to the <a href="/terms.html" target="_blank">auction terms</a>.</span></label>
           <p class="form-status" id="form-status" role="alert"></p>
-          <button class="submit-bid" id="submit-bid" type="submit">Submit bid <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <p class="fineprint">No payment or card details are collected. Your company, website and bid are public; your email stays private.</p>
+          <button class="submit-bid" id="submit-bid" type="submit"><span>Submit bid</span> <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <p class="fineprint">Only the deposit is charged now; the winning amount is invoiced at close. Your company, website and bid are public; your email stays private.</p>
         </form>
       </section>
     </div>

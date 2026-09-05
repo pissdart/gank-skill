@@ -1,4 +1,4 @@
-import { SITE, OWNER, START_BID, STEP, TARGET, END_AT, SLOTS, slotById } from './config.js';
+import { SITE, OWNER, START_BID, STEP, TARGET, END_AT, DEPOSIT, BUNDLE_DISCOUNTS, discountFor, SLOTS } from './config.js';
 import { createBodyViewer } from './body.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -9,7 +9,10 @@ const safeOrigin = (url) => { try { const u = new URL(url); return u.protocol ==
 const logoUrl = (domain) => `/api/logo?domain=${encodeURIComponent(domain)}`;
 const ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-const spots = SLOTS.map((s) => ({ ...s, currentBid: 0, bids: 0, leader: '', website: '', domain: '', custom: '', history: [] }));
+const spots = SLOTS.map((s) => ({ ...s, currentBid: 0, bids: 0, leader: '', website: '', domain: '', custom: '', reserved: false, history: [] }));
+let depositEnabled = false; // true once the server says Stripe is configured
+const leaderKey = (s) => (s.domain || s.leader || '').toLowerCase();
+const holdings = (s) => (leaderKey(s) ? spots.filter((x) => leaderKey(x) === leaderKey(s)).length : 0);
 const nextBid = (s) => (s.currentBid ? s.currentBid + STEP : START_BID);
 let endsAt = new Date(END_AT);
 const closed = () => Date.now() >= endsAt.getTime();
@@ -18,6 +21,10 @@ const closed = () => Date.now() >= endsAt.getTime();
 $$('[data-step]').forEach((el) => (el.textContent = money(STEP)));
 $$('[data-start]').forEach((el) => (el.textContent = money(START_BID)));
 $$('[data-target]').forEach((el) => (el.textContent = money(TARGET)));
+$$('[data-deposit]').forEach((el) => (el.textContent = money(DEPOSIT)));
+const topTier = BUNDLE_DISCOUNTS[0];
+$$('[data-discount-first]').forEach((el) => (el.textContent = topTier ? `${topTier.pct}%` : ''));
+$$('[data-discount-tiers]').forEach((el) => (el.textContent = BUNDLE_DISCOUNTS.map((t) => `${t.min}${t === BUNDLE_DISCOUNTS.at(-1) ? '+' : ''} placements → ${t.pct}% off`).join(' · ')));
 $$('[data-game]').forEach((el) => (el.textContent = OWNER.game));
 const ownerLink = $('[data-owner-link]');
 ownerLink.textContent = OWNER.handle;
@@ -42,7 +49,7 @@ $('[data-auction-list]').innerHTML = spots.map((s) => `
       <div class="area-name"><span class="area-number">${String(s.id).padStart(2, '0')}</span><h3>${esc(s.name)}</h3><p>${esc(s.note)} <b>${esc(s.size)}</b></p></div>
       <div class="area-holder">
         <span class="brand-mark" data-brand-mark-for="${s.id}"><span>—</span></span>
-        <div><small>HELD BY</small><a data-leader-for="${s.id}">No bids yet</a></div>
+        <div><small>HELD BY</small><a data-leader-for="${s.id}">No bids yet</a><em class="bundle" data-bundle-for="${s.id}" hidden></em></div>
       </div>
       <div class="area-price"><small>CURRENT BID</small><strong data-current-for="${s.id}">${money(0)}</strong><span><b data-bids-for="${s.id}">0</b> bids</span></div>
       <button type="button" class="row-bid" data-open-bid="${s.id}"><span>PLACE BID</span><b data-next-for="${s.id}">${money(START_BID)}</b>${ARROW}</button>
@@ -69,8 +76,12 @@ function renderSpot(s) {
   $(`[data-next-for="${s.id}"]`).textContent = money(nextBid(s));
   $(`[data-bids-for="${s.id}"]`).textContent = s.bids;
   const btn = $(`[data-open-bid="${s.id}"]`);
-  btn.disabled = closed();
-  btn.querySelector('span').textContent = closed() ? 'CLOSED' : s.currentBid ? 'OUTBID' : 'PLACE BID';
+  btn.disabled = closed() || s.reserved;
+  btn.querySelector('span').textContent = closed() ? 'CLOSED' : s.reserved ? 'BID IN PROGRESS' : s.currentBid ? 'OUTBID' : 'PLACE BID';
+  const held = holdings(s);
+  const bundle = $(`[data-bundle-for="${s.id}"]`);
+  bundle.hidden = held < 2;
+  if (held >= 2) bundle.textContent = `Holds ${held} · ${discountFor(held)}% off at close`;
   const leader = $(`[data-leader-for="${s.id}"]`);
   leader.textContent = s.leader || 'No bids yet';
   if (s.website && safeOrigin(s.website)) { leader.href = s.website; leader.target = '_blank'; leader.rel = 'noopener nofollow sponsored'; }
@@ -119,10 +130,11 @@ async function refresh() {
       if (!s) continue;
       Object.assign(s, {
         currentBid: remote.currentBid || 0, bids: remote.bids || 0, leader: remote.leader || '', website: remote.website || '',
-        domain: remote.domain || '', custom: remote.custom || '', history: Array.isArray(remote.history) ? remote.history : [],
+        domain: remote.domain || '', custom: remote.custom || '', reserved: !!remote.reserved, history: Array.isArray(remote.history) ? remote.history : [],
       });
-      renderSpot(s);
     }
+    depositEnabled = !!data.deposit?.enabled;
+    spots.forEach(renderSpot); // after all are in, so bundle badges see every holding
     renderFunding();
   } catch {
     /* keep whatever we have; the next poll will try again */
@@ -167,6 +179,9 @@ function openBid(id) {
   customInput.maxLength = current.customMax || 40;
   customInput.value = '';
   $$('.text-input', form).forEach((i) => i.classList.remove('is-invalid'));
+  const dep = $('#deposit-note');
+  dep.hidden = !(DEPOSIT > 0);
+  $('#submit-bid').querySelector('span').textContent = DEPOSIT > 0 && depositEnabled ? `Continue to ${money(DEPOSIT)} deposit` : 'Submit bid';
   lastFocus = document.activeElement;
   modal.classList.add('is-open');
   modal.setAttribute('aria-hidden', 'false');
@@ -223,6 +238,7 @@ form.addEventListener('submit', async (e) => {
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.error || 'Could not save your bid.');
+    if (data.checkoutUrl) { location.href = data.checkoutUrl; return; }
     closeBid();
     await refresh();
     toast(`Bid confirmed · ${data.reference}`);
@@ -272,10 +288,39 @@ createBodyViewer({
   c.innerHTML = '<p class="body-fallback">Your browser could not render the 3D model. The placements below still work.</p>';
 });
 
+/* ------------------------------------------------- back from checkout --- */
+async function handleCheckoutReturn() {
+  const q = new URLSearchParams(location.search);
+  const state = q.get('checkout');
+  if (!state) return;
+  history.replaceState(null, '', location.pathname + '#auction');
+  if (state === 'success' && q.get('session_id')) {
+    let confirmed = null;
+    for (let i = 0; i < 6 && !confirmed; i++) {
+      try {
+        const res = await fetch(`/api/checkout?session_id=${encodeURIComponent(q.get('session_id'))}`);
+        const data = await res.json().catch(() => ({}));
+        if (res.ok) confirmed = data;
+        else if (res.status !== 402) { toast(data.error || 'Could not confirm your deposit.'); return; }
+        else await new Promise((r) => setTimeout(r, 1500));
+      } catch { await new Promise((r) => setTimeout(r, 1500)); }
+    }
+    await refresh();
+    if (confirmed) {
+      toast(`Deposit received · bid ${confirmed.reference} is live`);
+      $(`[data-card-for="${confirmed.spotId}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else toast('Deposit is still processing. Your bid will appear in a moment.');
+  } else if (state === 'cancel' && q.get('bid')) {
+    try { await fetch(`/api/checkout?bid=${encodeURIComponent(q.get('bid'))}`, { method: 'DELETE' }); } catch {}
+    await refresh();
+    toast('Bid cancelled. Nothing was charged.');
+  }
+}
+
 /* ----------------------------------------------------------------- boot --- */
 document.title = SITE.title;
 tickCountdown();
 setInterval(tickCountdown, 1000);
-refresh();
+refresh().then(handleCheckoutReturn);
 setInterval(refresh, 10000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
