@@ -31,6 +31,8 @@ export const END_AT = '2026-10-05T20:00:00-04:00';
 // the slot faces — the viewer raycasts from anchor + dir onto the skin.
 // `decal` is the stencil size on the skin (width, height) in body units.
 export const SLOTS = [
+  // Everything is on the back side of the body. Nothing on the front, spine,
+  // flanks or hips — those stay clear for my own work.
   {
     id: 1,
     name: 'Left cheek',
@@ -60,6 +62,15 @@ export const SLOTS = [
   },
   {
     id: 4,
+    name: 'Mid back',
+    note: 'Dead centre, between the blades and the belt.',
+    size: '≈ 20 × 10 cm',
+    anchor: [0, 0.11, 0.3],
+    dir: [0, 0, 1],
+    decal: [0.34, 0.16],
+  },
+  {
+    id: 5,
     name: 'Upper back',
     note: 'The billboard. Shoulder to shoulder.',
     size: '≈ 30 × 12 cm',
@@ -68,7 +79,7 @@ export const SLOTS = [
     decal: [0.5, 0.2],
   },
   {
-    id: 5,
+    id: 6,
     name: 'Left shoulder blade',
     note: 'Reads well over a tank top.',
     size: '≈ 12 × 12 cm',
@@ -77,7 +88,7 @@ export const SLOTS = [
     decal: [0.2, 0.2],
   },
   {
-    id: 6,
+    id: 7,
     name: 'Right shoulder blade',
     note: 'Same, mirrored.',
     size: '≈ 12 × 12 cm',
@@ -86,43 +97,31 @@ export const SLOTS = [
     decal: [0.2, 0.2],
   },
   {
-    id: 7,
-    name: 'Spine',
-    note: 'One vertical line of text, full length.',
-    size: '≈ 4 × 40 cm',
-    anchor: [0, 0.18, 0.3],
-    dir: [0, 0, 1],
-    decal: [0.08, 0.62],
-    customField: 'SPINE TEXT · 2–24 CHARACTERS',
-    customPlaceholder: 'SHIP IT',
-    customMax: 24,
-  },
-  {
     id: 8,
-    name: 'Left flank',
-    note: 'Ribs to hip. The side profile.',
-    size: '≈ 8 × 20 cm',
-    anchor: [-0.5, 0.05, 0.02],
-    dir: [-1, 0, 0.15],
-    decal: [0.14, 0.34],
-  },
-  {
-    id: 9,
-    name: 'Right flank',
-    note: 'The other side.',
-    size: '≈ 8 × 20 cm',
-    anchor: [0.5, 0.05, 0.02],
-    dir: [1, 0, 0.15],
-    decal: [0.14, 0.34],
-  },
-  {
-    id: 10,
     name: 'Nape',
-    note: 'Above the collar. Visible with a shirt on.',
+    note: 'Above the collar, only from behind.',
     size: '≈ 8 × 6 cm',
     anchor: [0, 0.86, 0.3],
     dir: [0, 0.2, 1],
     decal: [0.13, 0.1],
+  },
+  {
+    id: 9,
+    name: 'Back of left thigh',
+    note: 'Under the cheek. Shorts weather only.',
+    size: '≈ 12 × 10 cm',
+    anchor: [-0.19, -0.7, 0.3],
+    dir: [0, 0, 1],
+    decal: [0.17, 0.14],
+  },
+  {
+    id: 10,
+    name: 'Back of right thigh',
+    note: 'The other leg.',
+    size: '≈ 12 × 10 cm',
+    anchor: [0.19, -0.7, 0.3],
+    dir: [0, 0, 1],
+    decal: [0.17, 0.14],
   },
 ];
 

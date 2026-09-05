@@ -246,8 +246,9 @@ export async function createBodyViewer({ container, slots, onSelect, onHover, re
   controls.enableZoom = false;
   controls.minPolarAngle = Math.PI * 0.32;
   controls.maxPolarAngle = Math.PI * 0.62;
-  controls.minAzimuthAngle = -Math.PI * 0.5;
-  controls.maxAzimuthAngle = Math.PI * 0.5;
+  // back side only: the model never turns far enough to show the front
+  controls.minAzimuthAngle = -Math.PI * 0.36;
+  controls.maxAzimuthAngle = Math.PI * 0.36;
   controls.rotateSpeed = 0.6;
 
   // white studio
